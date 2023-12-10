@@ -35,25 +35,18 @@ class ToggleButton:
     def is_over(self, mouse_pos:tuple):
         if mouse_pos[0] > self.pos.x and mouse_pos[0] < self.pos.x + self.size.x:
             if mouse_pos[1] > self.pos.y and mouse_pos[1] < self.pos.y + self.size.y:
+                # print("Over button: " + self.text)
                 return True
         return False
     
-    def click(self, state:bool = None):
-        if state != None:
-            self.clicked = not self.clicked
-            if self.clicked:
-                self.color, self.backgroundColor = self.origBackgroundColor, self.origColor
-            else:
-                self.color, self.backgroundColor = self.origColor, self.origBackgroundColor
-        else:
-            self.clicked = state
-            if self.clicked:
-                self.color, self.backgroundColor = self.origBackgroundColor, self.origColor
-            else:
-                self.color, self.backgroundColor = self.origColor, self.origBackgroundColor
-
+    def click(self, state:bool):
+        self.clicked = state
         if self.clicked:
-            self.onClick()
+            self.color = self.origBackgroundColor
+            self.backgroundColor =  self.origColor
+        else:
+            self.color = self.origColor
+            self.backgroundColor = self.origBackgroundColor
 
     def onClick(self):
         pass
